@@ -89,7 +89,7 @@ section {
 @media (max-width: 900px) {
   .about-content {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 2rem;
     flex-wrap: wrap;
   }
@@ -104,6 +104,10 @@ section {
   }
   .about-text {
     max-width: 100%;
+    text-align: center;
+  }
+  #about h2 {
+    font-size: 2.5rem;
   }
 }
 @media (max-width: 700px) {
@@ -114,6 +118,24 @@ section {
   .project-card {
     width: 100%;
     min-width: unset;
+  }
+  #about h2 {
+    font-size: 2rem;
+  }
+  .section-title {
+    font-size: 2rem;
+  }
+  .skills .section-title {
+    font-size: 2rem;
+  }
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+  .skill-category {
+    padding: 1.5rem;
+  }
+  .skill-items {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   }
 }
 .resume-btn, #contact-form button {
@@ -368,12 +390,34 @@ section {
     padding: 2rem 1rem;
     max-width: 98vw;
   }
+  #hero h1 {
+    font-size: 2.5rem;
+  }
+  #hero p {
+    font-size: 1.2rem;
+  }
 }
 
 @media (max-width: 700px) {
   .hero-content-bg {
     padding: 1.2rem 1rem;
     max-width: 95vw;
+  }
+  #hero h1 {
+    font-size: 2rem;
+  }
+  #hero p {
+    font-size: 1rem;
+  }
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  .hero-btn {
+    width: 100%;
+    max-width: 250px;
+    text-align: center;
   }
 }
 
@@ -590,6 +634,21 @@ section {
     height: 4px;
     margin-bottom: 1.5rem;
   }
+  .hero-socials {
+    gap: 1rem;
+  }
+  .hero-social-icon {
+    font-size: 1.5rem;
+  }
+  .project-desc {
+    padding: 1rem;
+  }
+  .project-desc h3 {
+    font-size: 1.2rem;
+  }
+  .project-desc p {
+    font-size: 0.9rem;
+  }
 } 
 
 .footer {
@@ -796,7 +855,9 @@ section {
   border: none;
   cursor: pointer;
   z-index: 1001;
-  margin-left: 1rem;
+  position: fixed;
+  top: 1.2rem;
+  left: 1.2rem;
 }
 .burger span {
   display: block;
@@ -807,13 +868,22 @@ section {
   border-radius: 2px;
   transition: 0.3s;
 }
+.burger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(8px, 8px);
+}
+.burger.active span:nth-child(2) {
+  opacity: 0;
+}
+.burger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(8px, -8px);
+}
 
 
 @media (max-width: 900px) {
   nav ul {
     position: fixed;
     top: 0;
-    right: -100vw;
+    left: -100vw;
     width: 70vw;
     max-width: 320px;
     height: 100vh;
@@ -822,21 +892,24 @@ section {
     align-items: flex-start;
     padding: 4rem 2rem 2rem 2rem;
     gap: 2rem;
-    transition: right 0.3s;
+    transition: left 0.3s;
     z-index: 1000;
     box-shadow: -2px 0 12px rgba(0,0,0,0.12);
   }
   nav ul.open {
-    right: 0;
+    left: 0;
   }
   .burger {
     display: flex;
-    position: absolute;
-    top: 1.2rem;
-    right: 1.2rem;
   }
   nav .nav-separator {
     display: none;
+  }
+  body {
+    padding-top: 0;
+  }
+  nav {
+    padding: 0;
   }
 }
 

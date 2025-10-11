@@ -29,15 +29,33 @@ window.addEventListener('scroll', function() {
 
 const burger = document.querySelector('.burger');
 const navUl = document.querySelector('nav ul');
+
+// Toggle burger menu
 burger.addEventListener('click', () => {
   navUl.classList.toggle('open');
   burger.classList.toggle('active');
 });
 
-
+// Close menu when clicking on nav links
 navUl.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', () => {
     navUl.classList.remove('open');
     burger.classList.remove('active');
   });
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+  if (!navUl.contains(e.target) && !burger.contains(e.target)) {
+    navUl.classList.remove('open');
+    burger.classList.remove('active');
+  }
+});
+
+// Close menu on window resize
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 900) {
+    navUl.classList.remove('open');
+    burger.classList.remove('active');
+  }
 });
