@@ -35,7 +35,7 @@
     <img src="assets/9d361191444d2e9384d657eddec7e326.jpg" alt="Hero Visual" class="hero-bg-img">
     <div class="hero-content-bg">
       <h1>OTHMANE FAKIR</h1>
-      <p>WEB DEVELOPPEUR</p>
+      <p>WEB DEVELOPER & DEVOPS ENTHUSIAST</p>
       <div class="hero-buttons">
         <a href="#contact" class="hero-btn primary">Contact Me</a>
         <a href="OTHMANE-FAKIR-CV (1).pdf" class="hero-btn secondary" download>Download Resume</a>
@@ -56,9 +56,22 @@
     <div class="about-content">
       <img src="assets/WhatsApp Image 2025-07-06 at 00.15.31.jpeg" alt="Profile Image" class="profile-img">
       <div class="about-text">
-        <p>Hi, I'm Othmane Fakir, a passionate first-year developer with a growing love for building modern, user-friendly web applications. Since starting my journey in tech, I've been driven by curiosity and a desire to turn ideas into real, interactive experiences.</p>
-        <p>I enjoy exploring new technologies and have already gained hands-on experience with HTML, CSS, JavaScript, and frameworks like React and Tailwind CSS. I'm always eager to learn more, whether it's backend basics with Python and PHP, or collaborating on projects using Git and GitHub.</p>
-        <p>Currently, I'm focused on sharpening my skills, contributing to open-source projects, and building a strong foundation in both front-end and back-end development. My goal is to create impactful digital solutions and grow into a well-rounded full-stack developer.</p>
+        <p>
+          Hi, I'm Othmane Fakir, a web developer focused on building modern, user-friendly web applications. 
+          I enjoy turning ideas into real, interactive experiences that work smoothly in the browser.
+        </p>
+        <p>
+          I work mainly with HTML, CSS, JavaScript, and frameworks like React and Tailwind CSS, and I also use 
+          backend technologies such as PHP, Python, and MySQL to build more complete solutions.
+        </p>
+        <p>
+          I have experience with Git, GitHub, and GitLab, and I have learned how to set up CI/CD pipelines 
+          and apply DevOps practices on my own projects to automate testing and deployment.
+        </p>
+        <p>
+          Right now, I'm focused on growing as a full-stack developer, building real projects, and collaborating 
+          on challenging ideas that push my skills forward.
+        </p>
         <p>When I'm not coding, you'll find me exploring new tech trends, connecting with other developers, or working on personal projects that challenge and inspire me.</p>
       </div>
     </div>
@@ -334,11 +347,18 @@
         </div>
       </div>
       <form id="contact-form">
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="email" name="email" placeholder="Your Email" required>
-        <textarea name="message" placeholder="Your Message" required></textarea>
+        <label for="name" class="sr-only">Your Name</label>
+        <input id="name" type="text" name="name" placeholder="Your Name" required>
+      
+        <label for="email" class="sr-only">Your Email</label>
+        <input id="email" type="email" name="email" placeholder="Your Email" required>
+      
+        <label for="message" class="sr-only">Your Message</label>
+        <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+      
         <button type="submit">Send</button>
       </form>
+      
     </div>
   </section>
 

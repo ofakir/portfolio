@@ -30,9 +30,21 @@ nav a {
   text-decoration: none;
   font-weight: 600;
   transition: color 0.2s;
+  position: relative;
 }
-nav a:hover {
-  color: #B3C7F7;
+nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: #B3C7F7;
+  transition: width 0.2s;
+}
+
+nav a:hover::after {
+  width: 100%;
 }
 nav.scrolled {
   background: rgba(10, 35, 66, 0.7);
@@ -49,22 +61,24 @@ section {
 }
 #hero {
   text-align: center;
-  background: #fff;
-  color: #111;
+  background: #0A2342;          /* match body instead of white */
+  color: #fff;
   padding: 4rem 2rem;
   border-radius: 0 0 20px 20px;
   position: relative;
   overflow: hidden;
 }
+
 #hero h1 {
   font-size: 3rem;
   margin-bottom: 0.5rem;
-  color: #B3C7F7;
+  color: #ffffff;               /* let name be bright white */
 }
+
 #hero p {
   font-size: 1.5rem;
   margin-bottom: 1.5rem;
-  color: #B3C7F7;
+  color: #B3C7F7;               /* keep accent for subtitle */
   font-weight: 600;
 }
 .social-links {
@@ -867,6 +881,7 @@ section {
   position: fixed;
   top: 1.2rem;
   left: 1.2rem;
+  cursor: pointer;
 }
 .burger span {
   display: block;
@@ -937,4 +952,14 @@ section {
     width: 100%;
     margin-top: 1.5rem;
   }
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
 }
