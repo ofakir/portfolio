@@ -1,61 +1,84 @@
+/* =========================
+   Smooth Scroll Navigation
+========================= */
+document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
 
-const navLinks = document.querySelectorAll('nav a');
-navLinks.forEach(link => {
-  link.addEventListener('click', function(e) {
-    const href = this.getAttribute('href');
-    if (href.startsWith('#')) {
-      e.preventDefault();
-      document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
     }
+
+    // Close mobile menu after click
+    navUl.classList.remove('open');
+    burger.classList.remove('active');
+    burger.setAttribute('aria-expanded', 'false');
   });
 });
 
+/* =========================
+   Navbar Scroll State
+========================= */
+const nav = document.querySelector('nav');
+let lastState = false;
 
-document.getElementById('contact-form').addEventListener('submit', function(e) {
-  e.preventDefault();
-  alert('Thank you for reaching out! I will get back to you soon.');
-  this.reset();
-});
-
-window.addEventListener('scroll', function() {
-  const nav = document.querySelector('nav');
-  if (window.scrollY > 10) {
-    nav.classList.add('scrolled');
-  } else {
-    nav.classList.remove('scrolled');
+window.addEventListener('scroll', () => {
+  const shouldBeScrolled = window.scrollY > 10;
+  if (shouldBeScrolled !== lastState) {
+    nav.classList.toggle('scrolled', shouldBeScrolled);
+    lastState = shouldBeScrolled;
   }
 });
 
-
+/* =========================
+   Burger Menu Toggle
+========================= */
 const burger = document.querySelector('.burger');
 const navUl = document.querySelector('nav ul');
 
-// Toggle burger menu
 burger.addEventListener('click', () => {
-  navUl.classList.toggle('open');
+  const isOpen = navUl.classList.toggle('open');
   burger.classList.toggle('active');
+  burger.setAttribute('aria-expanded', isOpen);
 });
 
-// Close menu when clicking on nav links
-navUl.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    navUl.classList.remove('open');
-    burger.classList.remove('active');
-  });
-});
-
-// Close menu when clicking outside
+/* =========================
+   Close Menu on Outside Click
+========================= */
 document.addEventListener('click', (e) => {
   if (!navUl.contains(e.target) && !burger.contains(e.target)) {
     navUl.classList.remove('open');
     burger.classList.remove('active');
+    burger.setAttribute('aria-expanded', 'false');
   }
 });
 
-// Close menu on window resize
-window.addEventListener('resize', () => {
-  if (window.innerWidth > 900) {
-    navUl.classList.remove('open');
-    burger.classList.remove('active');
-  }
-});
+/* =========================
+   Contact Form (Demo UX)
+========================= */
+const form = document.getElementById('contact-form');
+
+if (form) {
+  const button = form.querySelector('button');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    button.disabled = true;
+    button.textContent = 'Sending...';
+
+    setTimeout(() => {
+      form.reset();
+      button.textContent = 'Message Sent';
+    }, 800);
+  });
+}
+
+/* =========================
+   Dynamic Footer Year
+========================= */
+const yearSpan = document.getElementById('year');
+if (yearSpan) {
+  yearSpan.textContent = new Date().getFullYear();
+}
