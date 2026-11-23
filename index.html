@@ -293,11 +293,11 @@
               <p class="project__label">Featured · AI · Health</p>
               <h3>MedVox — AI Medical Assistant</h3>
               <p>
-                Doctors dictate a consultation by voice; the app transcribes it live, then uses Google Gemini to pick the right
-                document type (prescription, medical certificate, sick note, referral...) and draft it. Documents are exported as PDF
-                and saved to a searchable patient history.
+                Doctors dictate a consultation by voice; the app transcribes it live, then an LLM (Llama 3.1 via Groq) picks the
+                right document type (prescription, certificate, report...) and drafts it, flagging BMI, drug-interaction alerts and
+                possible diagnoses. Documents are exported as PDF and saved to a searchable history.
               </p>
-              <div class="tags"><span>PHP</span><span>MySQL</span><span>Gemini API</span><span>Web Speech API</span><span>FPDF</span><span>Docker</span></div>
+              <div class="tags"><span>PHP</span><span>MySQL / SQLite</span><span>Groq API · Llama 3.1</span><span>Web Speech API</span><span>FPDF</span><span>Docker</span></div>
               <div class="project__links">
                 <a class="btn btn--small btn--ghost" href="https://github.com/ofakir/medvox" target="_blank" rel="noopener">Code</a>
               </div>
@@ -309,6 +309,18 @@
         <!-- More projects -->
         <h3 class="subhead reveal">More projects</h3>
         <div class="grid-projects">
+          <article class="project project--small reveal" data-cat="web">
+            <div class="project__thumb"><img src="assets/img/astonish.webp" alt="" width="1000" height="528" loading="lazy"></div>
+            <div class="project__body">
+              <h3>Astonish Skincare Store</h3>
+              <p>A full e-commerce site built at ISTA: catalog by category, search, cart, wishlist, checkout and order tracking, plus an admin panel for products, orders and users.</p>
+              <div class="tags"><span>PHP</span><span>MySQL</span><span>Bootstrap</span></div>
+              <div class="project__links">
+                <a class="link-arrow" href="https://github.com/ofakir/astonish-app" target="_blank" rel="noopener">Code</a>
+              </div>
+            </div>
+          </article>
+
           <article class="project project--small reveal" data-cat="web">
             <div class="project__thumb"><img class="pos-right" src="assets/img/nextapp.webp" alt="" width="985" height="354" loading="lazy"></div>
             <div class="project__body">
@@ -467,7 +479,7 @@
               <li><img src="assets/icons/vscode.svg" alt="" width="20" height="20" loading="lazy">VS Code</li>
               <li><img src="assets/icons/figma.svg" alt="" width="20" height="20" loading="lazy">Figma</li>
               <li><span class="chip-dot"></span>Vercel &amp; Netlify</li>
-              <li><span class="chip-dot"></span>Gemini API</li>
+              <li><span class="chip-dot"></span>LLM APIs (Groq)</li>
               <li><span class="chip-lang">AR</span>Arabic · Native</li>
               <li><span class="chip-lang">FR</span>French · Professional</li>
               <li><span class="chip-lang">EN</span>English · Fluent</li>
