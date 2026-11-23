@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>CV — Othmane Fakir</title>
+<!--
+  Source of Othmane-Fakir-CV.pdf. To regenerate the PDF after editing:
+    node cv/build-cv.js
+-->
+<style>
+  @font-face { font-family: 'Jakarta'; font-weight: 400; src: url(fonts/plus-jakarta-sans-latin-400-normal.woff2) format('woff2'); }
+  @font-face { font-family: 'Jakarta'; font-weight: 500; src: url(fonts/plus-jakarta-sans-latin-500-normal.woff2) format('woff2'); }
+  @font-face { font-family: 'Jakarta'; font-weight: 600; src: url(fonts/plus-jakarta-sans-latin-600-normal.woff2) format('woff2'); }
+  @font-face { font-family: 'Jakarta'; font-weight: 700; src: url(fonts/plus-jakarta-sans-latin-700-normal.woff2) format('woff2'); }
+  @font-face { font-family: 'Jakarta'; font-weight: 800; src: url(fonts/plus-jakarta-sans-latin-800-normal.woff2) format('woff2'); }
+
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #141b2d;
+    --side-text: #c8d0e0;
+    --ink: #111827;
+    --body: #374151;
+    --muted: #6b7280;
+    --line: #e5e7eb;
+  }
+  html, body { background: #fff; }
+  body {
+    font-family: 'Jakarta', sans-serif;
+    color: var(--body);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  .page {
+    width: 595.28pt;
+    height: 841.89pt;
+    display: grid;
+    grid-template-columns: 210pt 1fr;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+  }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+
+  /* ---------- Sidebar ---------- */
+  .side { background: var(--navy); color: var(--side-text); padding: 32pt 22pt 24pt 24pt; }
+  .photo {
+    width: 84pt; height: 84pt; border-radius: 50%;
+    object-fit: cover; display: block; margin: 0 auto 26pt;
+    border: 2.5pt solid rgba(255,255,255,.12);
+  }
+  .side h2 {
+    font-size: 10.5pt; font-weight: 700; color: #fff;
+    letter-spacing: .06em; text-transform: uppercase;
+    margin: 0 0 11pt;
+  }
+  .side h2:not(:first-child) { margin-top: 24pt; }
+  .side dl dt { font-size: 9.2pt; font-weight: 600; color: #fff; margin-top: 9pt; }
+  .side dl dd { font-size: 8.6pt; line-height: 1.45; word-break: break-word; }
+  .side dl dd a { color: var(--side-text); }
+
+  .lang { list-style: none; font-size: 8.8pt; }
+  .lang li { display: flex; justify-content: space-between; align-items: baseline; padding: 4pt 0; border-bottom: .5pt solid rgba(255,255,255,.08); }
+  .lang strong { color: #fff; font-weight: 600; }
+
+  .skill-group { margin-bottom: 11pt; }
+  .skill-group h3 { font-size: 8.8pt; font-weight: 600; color: #fff; margin-bottom: 5pt; }
+  .tags { display: flex; flex-wrap: wrap; gap: 3.5pt; }
+  .tags span {
+    font-size: 7.9pt; line-height: 1;
+    padding: 3.5pt 6pt; border-radius: 4pt;
+    background: rgba(255,255,255,.08); color: #e5e9f2;
+  }
+
+  .qualities { list-style: none; font-size: 8.8pt; line-height: 1.5; }
+  .qualities li { padding-left: 10pt; position: relative; margin-bottom: 3pt; }
+  .qualities li::before { content: ''; position: absolute; left: 0; top: 5.5pt; width: 4pt; height: 4pt; border-radius: 50%; background: var(--side-text); }
+
+  /* ---------- Main ---------- */
+  .main { padding: 30pt 30pt 24pt 30pt; }
+  .name { font-size: 26pt; font-weight: 800; color: var(--ink); letter-spacing: .02em; line-height: 1.05; }
+  .title { font-size: 11pt; font-weight: 700; color: var(--ink); letter-spacing: .03em; margin-top: 5pt; line-height: 1.35; }
+  .summary { font-size: 9.6pt; line-height: 1.6; margin-top: 16pt; }
+
+  .main h2 {
+    font-size: 10.5pt; font-weight: 700; color: var(--ink);
+    letter-spacing: .06em; text-transform: uppercase;
+    margin: 18pt 0 10pt; padding-bottom: 5pt;
+    border-bottom: 1pt solid var(--line);
+  }
+  .main h2.first { margin-top: 0; }
+
+  .item { margin-bottom: 12pt; }
+  .item:last-child { margin-bottom: 0; }
+  .item h3 { font-size: 10.2pt; font-weight: 700; color: var(--ink); line-height: 1.35; }
+  .meta { font-size: 8.8pt; color: var(--muted); margin-top: 1.5pt; }
+  .item p, .item li, .project p { font-size: 9.3pt; line-height: 1.55; }
+  .item p { margin-top: 4pt; }
+  .item ul { margin-top: 4pt; padding-left: 11pt; }
+  .item li { margin-bottom: 1.5pt; }
+  .item li::marker { color: var(--muted); }
+
+  .project { margin-bottom: 8pt; }
+  .project-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8pt; }
+  .project h3 { font-size: 10pt; }
+  .project .link { font-size: 8.2pt; color: #2563eb; white-space: nowrap; }
+  .project p { margin-top: 2pt; line-height: 1.45; }
+  .project .stack { font-size: 8.5pt; color: var(--muted); margin-top: 2.5pt; }
+  .badge {
+    display: inline-block; font-size: 7pt; font-weight: 700; letter-spacing: .04em;
+    color: #1d4ed8; background: #e8eefc; padding: 1.5pt 4.5pt; border-radius: 3pt;
+    margin-left: 4pt; vertical-align: 1pt;
+  }
+</style>
+</head>
+<body>
+
+<!-- ======================= PAGE 1 ======================= -->
+<section class="page">
+  <aside class="side">
+    <img class="photo" src="photo.jpg" alt="Othmane Fakir">
+
+    <h2>Contact</h2>
+    <dl>
+      <dt>Email</dt>
+      <dd><a href="mailto:othmanefakir010@gmail.com">othmanefakir010@gmail.com</a></dd>
+      <dt>Téléphone</dt>
+      <dd><a href="tel:+212764200272">+212 7 64 20 02 72</a></dd>
+      <dt>LinkedIn</dt>
+      <dd><a href="https://www.linkedin.com/in/othmane-fakir-359293336/">linkedin.com/in/othmane-fakir-359293336</a></dd>
+      <dt>GitHub</dt>
+      <dd><a href="https://github.com/ofakir">github.com/ofakir</a></dd>
+      <dt>Portfolio</dt>
+      <dd><a href="https://ofafolio.netlify.app">ofafolio.netlify.app</a></dd>
+      <dt>Localisation</dt>
+      <dd>Oulfa, Casablanca</dd>
+    </dl>
+
+    <h2>Langues</h2>
+    <ul class="lang">
+      <li><strong>Arabe</strong><span>Langue maternelle</span></li>
+      <li><strong>Français</strong><span>Professionnel</span></li>
+      <li><strong>Anglais</strong><span>Courant</span></li>
+    </ul>
+
+    <h2>Qualités</h2>
+    <ul class="qualities">
+      <li>Communication efficace</li>
+      <li>Résolution de problèmes</li>
+      <li>Travail en équipe</li>
+      <li>Adaptabilité</li>
+      <li>Gestion du temps</li>
+    </ul>
+  </aside>
+
+  <main class="main">
+    <h1 class="name">FAKIR&nbsp;&nbsp;OTHMANE</h1>
+    <p class="title">DÉVELOPPEUR WEB FULL-STACK<br>ÉTUDIANT INGÉNIEUR (3IIR) — EMSI</p>
+    <p class="summary">
+      Développeur Web Full-Stack et étudiant ingénieur en 3ème année à l'EMSI (3IIR), spécialisé dans le développement
+      d'applications avec React, Next.js, Laravel et Python. Fort de 10 mois d'expérience en entreprise chez EasyCaisse et de
+      projets en ligne comme HappyBac et CAN 2025, j'ai une expérience pratique de la conception de bases de données
+      (MongoDB, SQL) et du travail en méthode Agile. Je souhaite mettre mes compétences front-end et back-end au service
+      d'une équipe technique exigeante.
+    </p>
+
+    <h2>Expérience professionnelle</h2>
+    <div class="item">
+      <h3>Développeur Full Stack</h3>
+      <p class="meta">EasyCaisse | Casablanca | 02/2026 – 11/2026</p>
+      <ul>
+        <li>Développement full stack d'une application web : conception de l'interface utilisateur (front-end) et implémentation de la logique métier (back-end).</li>
+        <li>Conception, modification et optimisation de la base de données du projet.</li>
+        <li>Maintenance et amélioration continue de l'application en collaboration avec l'équipe.</li>
+        <li>Support technique matériel : montage, modification et personnalisation de PC (composants et boîtiers).</li>
+      </ul>
+    </div>
+    <div class="item">
+      <h3>Stagiaire Développeur Web</h3>
+      <p class="meta">NextApp | Casablanca | 07/2025 – 08/2025</p>
+      <ul>
+        <li>Développement du site web et d'un agent IA web pour une agence spécialisée en solutions IA (CRM, automatisation des ventes).</li>
+        <li>Projet en ligne : <a href="https://next-app-ai-agent.netlify.app/">next-app-ai-agent.netlify.app</a></li>
+      </ul>
+    </div>
+
+    <h2>Formation</h2>
+    <div class="item">
+      <h3>3ème année du cycle d'ingénieur en Ingénierie Informatique et Réseaux (3IIR)</h3>
+      <p class="meta">EMSI — Casablanca | 10/2026 – Présent</p>
+    </div>
+    <div class="item">
+      <h3>Formation professionnelle en Développement Web Full-Stack</h3>
+      <p class="meta">Institut Spécialisé de Technologie Appliquée NTIC SM (ISTA) — Casablanca | 09/2024 – 06/2026</p>
+    </div>
+    <div class="item">
+      <h3>Baccalauréat en Sciences Physiques</h3>
+      <p class="meta">Lycée Tarik Ibn Ziyad — Casablanca | 09/2021 – 05/2024</p>
+    </div>
+  </main>
+</section>
+
+<!-- ======================= PAGE 2 ======================= -->
+<section class="page">
+  <aside class="side">
+    <h2>Compétences</h2>
+    <div class="skill-group">
+      <h3>Front-end</h3>
+      <div class="tags"><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>TypeScript</span><span>React</span><span>Next.js</span><span>Tailwind CSS</span><span>Bootstrap</span></div>
+    </div>
+    <div class="skill-group">
+      <h3>Back-end</h3>
+      <div class="tags"><span>PHP</span><span>Laravel</span><span>Node.js</span><span>Python</span><span>C++</span><span>POO</span></div>
+    </div>
+    <div class="skill-group">
+      <h3>Bases de données</h3>
+      <div class="tags"><span>SQL</span><span>PL/SQL</span><span>MySQL</span><span>MongoDB</span><span>Supabase</span></div>
+    </div>
+    <div class="skill-group">
+      <h3>DevOps &amp; outils</h3>
+      <div class="tags"><span>Git</span><span>GitHub</span><span>GitLab</span><span>Docker</span><span>CI/CD</span><span>SonarQube</span><span>Linux</span><span>Jira</span></div>
+    </div>
+    <div class="skill-group">
+      <h3>IA &amp; API</h3>
+      <div class="tags"><span>API Groq (LLM)</span><span>Web Speech API</span></div>
+    </div>
+    <div class="skill-group">
+      <h3>Méthodes</h3>
+      <div class="tags"><span>Agile / Scrum</span></div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <h2 class="first">Projets</h2>
+
+    <div class="project">
+      <div class="project-head"><h3>HappyBac<span class="badge">EN LIGNE</span></h3><a class="link" href="https://happybac.vercel.app">happybac.vercel.app</a></div>
+      <p>Plateforme de révision pour le baccalauréat marocain, bilingue français/arabe : cours par matière, archives des examens nationaux corrigés, quiz, orientation et études à l'étranger, avec authentification (dont Google).</p>
+      <p class="stack">Next.js, React, TypeScript, Supabase, Tailwind CSS</p>
+    </div>
+
+    <div class="project">
+      <div class="project-head"><h3>MedVox — Assistant médical IA<span class="badge">EN LIGNE</span></h3><a class="link" href="https://medvox.onrender.com">medvox.onrender.com</a></div>
+      <p>Le médecin dicte la consultation, l'application la transcrit en temps réel puis génère avec l'IA (Llama 3.1 via Groq) le document adapté (ordonnance, certificat, compte rendu…), avec calcul de l'IMC et alertes d'interactions. Export PDF et historique.</p>
+      <p class="stack">PHP, MySQL / SQLite, API Groq (LLM), Web Speech API, Docker</p>
+    </div>
+
+    <div class="project">
+      <div class="project-head"><h3>CAN 2025 Prediction<span class="badge">EN LIGNE</span></h3><a class="link" href="https://canfan.site/">canfan.site</a></div>
+      <p>Application web de pronostics autour de la CAN 2025 : comptes utilisateurs, pronostics des matchs, classement des joueurs et tableau de bord d'administration.</p>
+      <p class="stack">HTML, CSS, JavaScript, PHP, MySQL</p>
+    </div>
+
+    <div class="project">
+      <div class="project-head"><h3>NextApp AI Agent<span class="badge">EN LIGNE</span></h3><a class="link" href="https://next-app-ai-agent.netlify.app/">next-app-ai-agent.netlify.app</a></div>
+      <p>Assistant virtuel IA intégré à une application web pour automatiser les interactions et requêtes utilisateurs.</p>
+      <p class="stack">HTML, CSS, JavaScript, intégration IA</p>
+    </div>
+
+    <div class="project">
+      <div class="project-head"><h3>Flameboyant — Boutique d'animés<span class="badge">EN LIGNE</span></h3><a class="link" href="https://flameboyant.netlify.app/">flameboyant.netlify.app</a></div>
+      <p>Boutique en ligne dédiée aux produits dérivés d'animés avec interface responsive et catalogue interactif.</p>
+      <p class="stack">HTML, CSS, Bootstrap, JavaScript</p>
+    </div>
+
+    <div class="project">
+      <div class="project-head"><h3>Astonish — E-commerce PHP</h3><a class="link" href="https://github.com/ofakir/astonish-app">github.com/ofakir/astonish-app</a></div>
+      <p>Boutique en ligne de soins réalisée à l'ISTA : catalogue par catégorie, panier, favoris, commande et suivi, avec panneau d'administration (produits, commandes, utilisateurs).</p>
+      <p class="stack">PHP, MySQL, Bootstrap, JavaScript</p>
+    </div>
+
+    <div class="project">
+      <div class="project-head"><h3>Speech to Text App</h3><a class="link" href="https://github.com/ofakir/speech-to-text.">github.com/ofakir/speech-to-text.</a></div>
+      <p>Application web de reconnaissance vocale permettant de transcrire la parole en texte en temps réel.</p>
+      <p class="stack">HTML, CSS, JavaScript, Web Speech API</p>
+    </div>
+
+    <div class="project">
+      <div class="project-head"><h3>JumpMaster</h3><a class="link" href="https://github.com/ofakir/my-game">github.com/ofakir/my-game</a></div>
+      <p>Jeu 2D de plateforme avec gestion des sauts, des collisions et du score.</p>
+      <p class="stack">Python, Pygame</p>
+    </div>
+
+    <h2>Certifications</h2>
+    <div class="item">
+      <h3>Certificat de participation — Hackathon Smart City Foot Tech 2026</h3>
+      <p class="meta">Hack &amp; Pitch / WeCasablanca (LaStartupStation, Technopark Casablanca) | 06/2026</p>
+    </div>
+    <div class="item">
+      <h3>Hackathon Digital Development — Certificat de participation (2ème Hackathon Régional)</h3>
+      <p class="meta">OFPPT / ISTA (Développement Digital) | 05/2025</p>
+    </div>
+  </main>
+</section>
+
+</body>
+</html>
