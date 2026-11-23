@@ -2,7 +2,7 @@
 
 Personal portfolio of **Othmane Fakir**, Full-Stack Web Developer based in Casablanca.
 
-**Live:** https://portfolio-othmane.netlify.app/
+**Live:** https://ofafolio.netlify.app/
 
 Built from scratch with plain HTML, CSS and JavaScript. It has no framework and no build step.
 

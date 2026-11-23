@@ -603,7 +603,9 @@ strong { color: var(--heading); font-weight: 600; }
   object-position: top center;
   transition: transform .6s ease;
 }
-.project__media img.pos-right { object-position: 88% center; }
+.project__media img.pos-right,
+.project__thumb img.pos-right { object-position: 88% center; }
+.project__media img.pos-left { object-position: left top; }
 .project--featured:hover .project__media img { transform: scale(1.04); }
 
 .project__body { padding: clamp(1.5rem, 3vw, 2.4rem); display: flex; flex-direction: column; }
@@ -643,6 +645,15 @@ strong { color: var(--heading); font-weight: 600; }
 .project--small .project__body > p { font-size: .93rem; margin-bottom: 0; }
 .project--small .tags { margin: .9rem 0 1rem; }
 
+.private-note {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  font-size: .85rem;
+  color: var(--text-muted);
+}
+.private-note::before { content: '🔒'; font-size: .8rem; }
+
 .more-on-github { margin: 2.5rem 0 0; text-align: center; color: var(--text-muted); }
 .more-on-github a { font-weight: 600; }
 
@@ -672,10 +683,21 @@ strong { color: var(--heading); font-weight: 600; }
 .chips img { width: 20px; height: 20px; }
 .chip-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin: 0 6px; }
 [data-theme="dark"] .invert-dark { filter: invert(1); }
+.skill-group--wide { grid-column: 1 / -1; }
+.chip-lang {
+  font-family: var(--font-mono);
+  font-size: .7rem;
+  font-weight: 600;
+  padding: .1rem .35rem;
+  border-radius: 5px;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
 
 /* ---------- Education ---------- */
 .edu { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.4rem; }
 .edu__item { padding: 1.7rem 1.8rem; }
+.edu__item--current { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent-soft) inset; }
 .edu__item h3 { font-size: 1.18rem; margin: .6rem 0 .3rem; }
 .edu__item p:last-child { margin-bottom: 0; }
 .edu__item > p:not(.edu__school), .edu__item--cert div > p:not(.edu__school) { color: var(--text-muted); }
